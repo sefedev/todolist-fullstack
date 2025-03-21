@@ -4,3 +4,5 @@ import Github from "next-auth/providers/github"
 export const {handlers, auth, signIn, signOut} = NextAuth({
   providers: [Github]  
 })
+
+console.log("auth", auth)
