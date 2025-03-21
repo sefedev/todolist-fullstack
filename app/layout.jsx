@@ -1,6 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,10 +11,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata = {
-//   title: "Todo App",
-//   description: "A Todo App created with CRUD in mind",
-// };
+export const metadata = {
+  title: "Todo App | Home",
+  description: "A Todo App created with CRUD in mind",
+};
 
 export default function RootLayout({ children }) {
   return (

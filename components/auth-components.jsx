@@ -1,23 +1,17 @@
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "../auth";
 
 export const SignIn = ({ ...props }) => {
   return (
-    <form action={async () => {
-        'use server'
-        await signIn("github", {redirectTo: '/'})
-        }}>
-    <button type="submit" {...props}>
-      Sign in
-    </button>
+    <form
+      action={async () => {
+        'use server';
+        await signIn("github", { redirectTo: "/" });
+      }}
+    >
+      <button type="submit" className="bg-blue-600 py-2 px-3 rounded cursor-pointer hover:bg-blue-300" {...props}>
+        Sign in
+      </button>
     </form>
-    // <button
-    //   onClick={() => {
-    //     signIn("github", { redirectTo: "/" });
-    //   }}
-    //   {...props}
-    // >
-    //   Sign in
-    // </button>
   );
 };
 
@@ -25,21 +19,13 @@ export const SignOut = ({ ...props }) => {
   return (
     <form
       action={async () => {
-        "use server";
+        'use server';
         await signOut();
       }}
     >
-      <button type="submit" {...props}>
+      <button type="submit" className="p-0 text-xs hover:underline cursor-pointer" {...props}>
         Sign out
       </button>
     </form>
-    // <button
-    //   onClick={() => {
-    //     signOut();
-    //   }}
-    //   {...props}
-    // >
-    //   Sign Out
-    // </button>
   );
 };
