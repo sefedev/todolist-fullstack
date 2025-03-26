@@ -18,8 +18,8 @@ export default async function Home() {
       <div className="flex justify-end w-full py-4">
         {session ? (
           <div className="flex items-center gap-1">
-            <p className="text-xs mt-0.5 line-clamp-1">Signed in as | {session.user.name}</p>
-            
+            <p className="text-xs mt-0.5 line-clamp-1">Signed in as {session.user.name}</p>
+            |
             <SignOut />
           </div>
         ) : (
