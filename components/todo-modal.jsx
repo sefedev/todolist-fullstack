@@ -2,6 +2,7 @@
 
 import { PencilIcon, X } from "lucide-react";
 import React, { useState } from "react";
+import { handleUpdateTodo } from "../utils/helper";
 
 const TodoModal = ({
   openModal,
@@ -11,19 +12,27 @@ const TodoModal = ({
   editTodo,
   setEditTodo,
   editIndex,
+  onTodoCreated
 }) => {
   const [editError, setEditError] = useState(false);
 
-  const onEditTodo = () => {
+  const onEditTodo = async() => {
     if (editTodo === "") return setEditError(true);
-    const newTodoList = todoList.map((todo, index) => {
-      if (index === editIndex) {
-        return editTodo;
-      }
-      return todo;
-    });
-    setTodoList(newTodoList);
-    setOpenModal(false);
+
+    try {
+      const updatedTodo = await handleUpdateTodo(editIndex, {todo: editTodo})
+      const newTodoList = todoList.map((todo) => {
+        if (todo.id === editIndex) {
+          return {...todo, ...updatedTodo};
+        }
+        return todo;
+      });
+      setTodoList(newTodoList);
+      setOpenModal(false);
+    } catch (error) {
+      
+    }
+   
   };
   if (!openModal) return null;
   return (
